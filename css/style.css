@@ -1,0 +1,309 @@
+@charset "utf-8";
+*{box-sizing: border-box;}
+html,body{margin: 0; padding: 0;}
+h1,h2,h3,h4,h5,h6 p{margin: 0;}
+ul,ol{margin: 0; padding: 0; list-style: none;}
+a, a:hover{text-decoration: none;}
+
+.wrap_01{width: 1200px; margin: 0 auto; background-color: #f99; padding: 20px 0; font-size: 0;}
+/* 글자가 안 보이게 된다 상속이 되기때문에 안 보임 */
+
+.wrap_01 .box{width: calc(25% - 20px); /*calc : 박스의 크기 중 25%중 20px씩 떨어트리게 해준다.   */
+     height: 280px; margin: 0 10px 20px; background-color: #aaf; display: inline-block; vertical-align: top; font-size: 16px; background-size: cover; background-position: 50% 50%;}/*inline-block을 쓸 때 엔터 공간이 있어야 함  */
+
+.wrap_01 .box:nth-child(1){background-image: url(../img/slide2-img1.jpg); font-size: 100px;}
+.wrap_01 .box:nth-child(2){background-image: url(../img/slide2-img2.jpg);}
+.wrap_01 .box:nth-child(3){background-image: url(../img/slide2-img3.jpg);}
+.wrap_01 .box:nth-child(4){background-image: url(../img/slide2-img4.jpg);}
+
+/* 미디어쿼리에서 max-width사용은 PC->테블릿=>모바일 
+min-width사용은 모바일->테블릿->PC
+*/
+
+/* 
+PC(1200, 단 레티나 또는 UHD 1440)
+tablet-H(992px~)
+tablet-V(768px~ )
+mobile-H(568 ~)
+mobile-V(568 미만~360 이상 )
+
+*/
+@media (max-width:1200px){
+    .wrap_01{width: 100%;}
+}
+
+@media (max-width: 767px){
+    .wrap_01 .box{width: calc(50% - 20px);}
+}
+@media (max-width: 567px){
+    .wrap_01 .box{width: calc(100% - 20px);}
+}
+
+.logo_part{}
+.logo_part img{display: inline-block; height: 40px; vertical-align: middle;} 
+.logo_part span{display: inline-block; vertical-align: middle;}/* 폰트를 로고의 중앙으로 오게 할 수 있다 */
+
+
+
+.wrap_02{width: 1200px; margin: 0 auto; padding: 20px 0 0; background-color: #faa; display: flex; flex-wrap: wrap; flex-direction: row; justify-content: flex-start; align-items: flex-start;}
+/* 부모에 display를 준다 자동으로 자식도 이어받게 됨 flex는 가로로 됨 flex-start 좌측으로 정렬 flex-wrap: wrap;을 써주면 공간을 가질 수 있게 되면서 이미지가 밑으로 내려갈 수 있음*/
+
+.wrap_02 .box{width: calc(25% - 20px); height: 280px; margin: 0 10px 20px; background-color: #aff; background-size: cover; background-position: 50% 50%;}
+
+.wrap_02 .box:nth-child(1){background-image: url(../img/slide2-img5.jpg);}
+.wrap_02 .box:nth-child(2){background-image: url(../img/slide2-img6.jpg);}
+.wrap_02 .box:nth-child(3){background-image: url(../img/slide2-img7.jpg);}
+.wrap_02 .box:nth-child(4){background-image: url(../img/slide2-img8.jpg);}
+
+@media (max-width: 1199px){
+    .wrap_02{width: 100%;}
+}
+@media (max-width: 991px){
+    .wrap_02 .box{width: calc(100% / 3 - 20px);}/* 33.33% - 20px */
+    .wrap_02 .box:nth-child(4){display: none;}
+    /* 남는 이미지가 밑으로 떨어지기 때문에 밑에있는 이미지를 없애준다 */
+}
+@media (max-width: 767px){
+    .wrap_02 .box{width: calc(50% - 20px);}
+    .wrap_02 .box:nth-child(4){display: block;}
+    /* 감춰놨던 4번째 이미지를 보여주게 된다 */
+}
+@media (max-width: 567px){
+    .wrap_02 .box{width: calc(100% - 20px);}
+}
+
+
+
+#ex_01{width: 100%; height: 60px; padding: 0 40px; background-color: #ddd; display: flex; justify-content: space-between; align-items: center; position: relative;} 
+/* space-between 공간을 사이에 두겠다는 뜻  lign-items: center 공간에서 가운데에 배치*/
+#ex_01 .logo{}
+#ex_01 .logo a{}
+#ex_01 .logo a img{display: block; height: 36px; }
+
+#ex_01 .res_menu{display: none;}
+/* 명시도가 밑에 보다 높기 때문에 none을 먼저 사용 */
+#ex_01 .menu{}
+#ex_01 .menu ul{display: flex;}/* 메뉴의 부모에 flex를 잡아서 가로배치 */
+#ex_01 .menu ul li{margin: 0 15px;}/* 공간을 띄운다 */
+#ex_01 .menu ul li a{display: block; color: #555; font-size: 14px;}
+
+
+@media (max-width: 767px){
+    #ex_01{padding: 0 20px;}
+    #ex_01 .res_menu{position: absolute; display: block; top: 15px; right: 20px;}
+    /* top: 15px; 30 / 2 = 15px */
+    .res_menu img{height: 30px; cursor: pointer;}
+
+    #ex_01 .menu{position: absolute; width: 100%; top: 60px; background-color: #bbb; left: 0; max-height: 0; overflow-y: hidden;}
+    /* 가지고 있는 컨텐츠를 빼온다 background-color 설정하면 패딩 40px때문에 떨어지게 된다 left: 0;을 잡아서 끝에 붙도록 한다*/
+    #ex_01 .menu.active{max-height:200px}
+    #ex_01 .menu ul{flex-direction: column; text-align: center;}/* 세로로 떨어지게 됨 */
+    #ex_01 .menu ul li{margin: 0;}
+    #ex_01 .menu ul li a{line-height: 40px;}
+}
+
+
+
+
+
+
+#ex_02{height: 60px; padding: 0 40px; background-color: #000; display: flex; justify-content: space-between; align-items: center; position: relative;}
+
+#ex_02 .logo{width: 150px;}
+#ex_02 .logo a{}
+#ex_02 .logo a img{display: block; height: 40px;}
+
+#ex_02 .menu{}
+#ex_02 .menu ul{display: flex;}
+#ex_02 .menu ul li{margin: 0 15px;}
+#ex_02 .menu ul li a{display: block; font-size: 14px; color: #bbb; line-height: 60px; position: relative; transition: color 0.5s;}
+#ex_02 .menu ul li a::after{content: ""; display: block; position: absolute; width: 100%; height: 3px; left: 0; bottom: 0; background-color: #fff; opacity: 0; transition: opacity 0.5s, width 0.5s;}
+
+#ex_02 .menu ul li a:hover::after{width: 100%; opacity: 1;}
+
+
+#ex_02 .mypage{}
+#ex_02 .mypage ul{display: flex;}
+#ex_02 .mypage ul li{margin: 0 10px;}
+#ex_02 .mypage ul li:last-child{margin-right: 0; }
+#ex_02 .mypage ul li a{display: block; width: 20px; height: 20px; background-size: cover; background-position: 50% 50%; text-indent: -9999px; filter: invert(100%);}
+
+#ex_02 .mypage ul li:nth-child(1) a{background-image: url(../img/sns/search_icon.png);}
+#ex_02 .mypage ul li:nth-child(2) a{background-image: url(../img/sns/fav_icon.png);}
+#ex_02 .mypage ul li:nth-child(3) a{background-image: url(../img/sns/id_icon.png);}
+#ex_02 .mypage ul li:nth-child(4) a{background-image: url(../img/bars-solid.svg);}
+
+#ex_02 .mypage ul li:nth-child(4){display: none;}
+
+@media (max-width:991px){
+    #ex_02{padding: 0 20px;}
+
+    #ex_02 .menu{position: absolute; 
+        top: 60px; left: 0; width: 100%;background-color: #333; text-align: center; max-height: 0; overflow-y: hidden;}
+
+        #ex_02 .menu.active{max-height: 200px;}
+    #ex_02 .menu ul{flex-direction: column;}
+    #ex_02 .menu ul li{margin: 0;}
+    #ex_02 .menu ul li a{line-height: 40px;}
+    #ex_02 .menu ul li a::after{background-color: transparent;}
+
+
+    #ex_02 .mypage ul li:nth-child(4){display: block;}
+
+
+
+}
+
+#ex_03 .puma{position: relative; width: 100%; height: 840px; background-image: url(../img/puma.jpg); background-size: cover; background-position: 50% 50%;}
+#ex_03 .puma span img{height: 58px; position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);}
+
+
+#ex_04{padding: 80px 0 100px;}
+#ex_04 .warp{width:1200px; margin: 0 auto; display: flex; flex-wrap: wrap;}
+#ex_04 h2{padding-bottom: 40px; text-align: center; font-size: 24px;}
+
+
+
+#ex_04 .text{width: calc(50% - 20px); color: #fff; margin: 0 10px 20px; height: 280px; background-image: url(../img/newArrivalBg.jpg); background-size: cover; background-position: 50% 50%; display: flex; justify-content: center; flex-direction: column; text-align: left; padding: 0 20px;}
+
+#ex_04 .text h4{font-size: 24px;}
+#ex_04 .text p{font-size: 14px;}
+
+
+#ex_04 .warp .titl1{width: calc(25% - 20px); height: 280px; background-color: #cccc; margin: 0 10px 20px; background-size: cover; background-position: 50% 50%;}
+
+#ex_04 .warp .titl1:nth-child(2){background-image: url(../img/products/new_01_01.jpg);}
+#ex_04 .warp .titl1:nth-child(3){background-image: url(../img/products/new_02_01.jpg);}
+#ex_04 .warp .titl1:nth-child(4){background-image: url(../img/products/new_03_01.jpg);}
+#ex_04 .warp .titl1:nth-child(5){background-image: url(../img/products/new_04_01.jpg);}
+#ex_04 .warp .titl1:nth-child(6){background-image: url(../img/products/new_05_01.jpg);}
+#ex_04 .warp .titl1:nth-child(7){background-image: url(../img/products/new_06_01.jpg);}
+#ex_04 .warp .titl1:nth-child(8){background-image: url(../img/products/new_07_01.jpg);}
+#ex_04 .warp .titl1:nth-child(9){background-image: url(../img/products/new_08_01.jpg);}
+#ex_04 .warp .titl1:nth-child(10){background-image: url(../img/products/new_09_01.jpg);}
+#ex_04 .warp .titl1:nth-child(11){background-image: url(../img/products/new_10_01.jpg);}
+
+#ex_04 .warp .titl1:hover div{height: 280px; background-color: rgba(0,0,0,0.3);}
+#ex_04 .warp .titl1 div{text-align: center; padding-top: 50px;}
+#ex_04 .warp .titl1 button{width: 80px; height: 30px;}
+
+
+#ex_05{padding: 100px 0 40px;}
+#ex_05 h2{ text-align: center; font-size: 24px;}
+#ex_05 p{text-align: center; font-size: 16px;}
+
+#ex_05 .warp2{width: 100%; position: relative; display: flex; flex-wrap: wrap; justify-content:space-between; padding: 0 40px;}
+#ex_05 .warp2 .run{ width: calc((100% - 40px ) / 3);}
+#ex_05 .warp2 .run img{ width: 100%; display: block;}
+
+#ex_05 .warp2 .text2{ width: 100%; background-color: #ccc; margin-top: 30px; text-align: center; padding: 20px; }
+
+#ex_05 .warp2 .text2 h3{ line-height: 30px; font-size: 20px;}
+#ex_05 .warp2 .text2 p{font-size: 14px;}
+#ex_05 .warp2 .text2 button{width: 140px; height: 44px; background-color: #000028; color: #fff; border: none;}
+#ex_05 .warp2 .text2 button:hover{background-color: #5555;}
+
+
+#ex_06{padding-top: 80px; width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; padding-bottom: 100px;}
+#ex_06 .img{width: 50%; height: 260px; background-image: url(../img/run\ puma.jpg); background-size: cover; background-position: 50% 50%;}
+#ex_06 .text3{width: 50%; padding: 20px; background-color: #000028; color: #fff;}
+#ex_06 button{width: 120px; height: 32px; border: 2px solid #fff; background-color: #000028; color: #fff;}
+
+
+#ex_07{padding: 100px 0 40px;}
+#ex_07 h2{ text-align: center; font-size: 24px;}
+#ex_07 p{text-align: center; font-size: 16px;}
+
+#ex_07 .warp3{width: 100%; position: relative; display: flex; flex-wrap: wrap; justify-content:space-between; padding: 0 40px;}
+#ex_07 .warp3 .run{ width: calc((100% - 40px ) / 3);}
+#ex_07 .warp3 .run img{ width: 100%; display: block;}
+
+#ex_07 .warp3 .text2{ width: 100%; background-color: #ccc; margin-top: 30px; text-align: center; padding: 20px; }
+
+#ex_07 .warp3 .text2 h3{ line-height: 30px; font-size: 20px;}
+#ex_07 .warp3 .text2 p{font-size: 14px;}
+#ex_07 .warp3 .text2 button{width: 140px; height: 44px; background-color: #000028; color: #fff; border: none;}
+#ex_07 .warp3 .text2 button:hover{background-color: #5555;}
+
+
+#ex_08{padding-top: 120px; }
+
+
+#ex_08 .fw1{position: relative; width: 100%; height: 480px; background-image: url(../img/footer_bg.jpg); background-position: 50% 50%; background-size: cover;}
+
+#ex_08 .logo{ display: block; padding: 40px; height: 30px;}
+#ex_08 .logo img{height: 50px; filter: brightness(0) invert(100%);}
+
+#ex_08 .logo2{position: absolute; bottom: -50px; right: -30px;}
+#ex_08 .logo2 img{height: 250px;}
+
+#ex_08 .allmenu{width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap;}
+
+#ex_08 .allmenu > div{width: calc(50% - 20px); margin: 0 10px 40px;}
+
+#ex_08 .allmenu > div h2{color: #fff; border-bottom: 3px solid #fff; padding-top: 50px;}
+#ex_08 .menu1 ul{ display: flex; flex-wrap: wrap;}
+
+
+#ex_08 .menu1 ul li{padding: 10px; width: 50%; }
+#ex_08 .menu1 ul li a{color: #fff; font-size: 14px;}
+
+#ex_08 .menu2 ul{ display: flex; flex-wrap: wrap;}
+
+
+#ex_08 .menu2 ul li{padding: 10px; width: 50%; }
+#ex_08 .menu2 ul li a{color: #fff; font-size: 14px;}
+
+
+
+#ex_08 span{color: #fff; margin: 0 auto; }
+
+
+
+
+@media(max-width:1200px){
+    #ex_04 .warp{width:100%;}
+    #ex_05 .warp2{padding: 0 40px;}
+    #ex_06{width: 900px;}
+    #ex_07 .warp3{padding: 100px 40px;}
+    #ex_06 .text3{width: 50%; padding: 0; padding: 10px;}
+    #ex_05 .warp2 .run img{}
+    #ex_08 .fw1{position: relative; width: 100%; height: 100%; }
+}
+
+@media(max-width:991px){
+    #ex_05 .warp2 .run:nth-child(3){display: none;}
+    #ex_05 .warp2 .run{ width: calc((100% - 20px ) / 2);}
+
+    #ex_07 .warp3 .run:nth-child(3){display: none;}
+    #ex_07 .warp3 .run{ width: calc((100% - 20px ) / 2);}
+
+    #ex_06 .text3{width: 80%; padding: 20px;}
+    #ex_06 .img{width: 80%; padding: 40px; background-position: 25% 5%;}
+    #ex_08 .fw1{ width: auto; padding-bottom: 40px;}
+    #ex_08 .allmenu > div{width: 50%; }
+    #ex_08 span{color: #fff; text-align: center;}
+    #ex_08 .allmenu{width: auto;}
+    #ex_04 .warp{width:100%; }
+    #ex_04 .warp .titl1{width: calc(50% - 20px); height: 280px;}
+    
+
+}
+
+@media(max-width:567px){
+    #ex_04 .warp{width:100%;}
+    #ex_05 .warp2{}
+    #ex_07 .warp3{}
+    #ex_05 .warp2 .run:nth-child(3){display: block;}
+    #ex_07 .warp3 .run:nth-child(3){display: block;}
+    #ex_05 .warp2 .run{ width: 100%; margin-bottom: 40px;}
+    #ex_07 .warp3 .run{ width: 100%; margin-bottom: 40px;}
+    #ex_07 .warp3 .run img{width: 100%; height: auto; }
+    #ex_05 .warp2 .text2{margin-top: 0;}
+    #ex_07 .warp3 .text2{margin-top: 0;}
+    #ex_08 .fw1{ width: 100%; height: 100%;}
+    #ex_06{width: 500px;}
+    #ex_07 .warp3 .text2{ width: auto; }
+    #ex_06 .text3{width: 100%; padding: 20px;}
+    #ex_06 .img{width: 100%;}
+}
